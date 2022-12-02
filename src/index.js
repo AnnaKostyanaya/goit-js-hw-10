@@ -17,7 +17,8 @@ function onSearch(evt) {
     const form = evt.target.value.trim();
     refs.countryList.innerHTML = '';
     refs.countryInfo.innerHTML = '';
-    fetchCountries(form).then(data => {
+    if (form !== "") {
+        fetchCountries(form).then(data => {
         if (data.length === 1) {
             if (refs.countryList !== '') {
                 refs.countryList.innerHTML = '';
@@ -38,6 +39,7 @@ function onSearch(evt) {
             Notiflix.Notify.info("Too many matches found. Please enter a more specific name.");
         }
     }).catch(error => { Notiflix.Notify.failure("Oops, there is no country with that name") });
+    } 
 }
 
 function createMarkUp(official, flags) {
