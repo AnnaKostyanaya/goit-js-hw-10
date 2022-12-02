@@ -15,32 +15,29 @@ refs.input.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch(evt) { 
     const form = evt.target.value.trim();
-    if (form === '') {
-        refs.countryList.innerHTML = '';
-        refs.countryInfo.innerHTML = '';
-    } else {
-        fetchCountries(form).then(data => {
-            if (data.length === 1) {
-                if (refs.countryList !== '') {
-                    refs.countryList.innerHTML = '';
-                }
-                const markUpAddData = createCountryMarkUp(data[0].name.official, data[0].flags.svg, data[0].capital, data[0].population, Object.values(data[0].languages).join(", "));
-                refs.countryInfo.innerHTML = markUpAddData;
+    refs.countryList.innerHTML = '';
+    refs.countryInfo.innerHTML = '';
+    fetchCountries(form).then(data => {
+        if (data.length === 1) {
+            if (refs.countryList !== '') {
+                refs.countryList.innerHTML = '';
             }
-            if (data.length > 1 && data.length <= 10) {
-                if (refs.countryInfo !== '') {
-                    refs.countryInfo.innerHTML = '';
-                }
-                for (const element of data) {
-                    const markUp = createMarkUp(element.name.official, element.flags.svg);
-                    refs.countryList.innerHTML += markUp;
-                }
+            const markUpAddData = createCountryMarkUp(data[0].name.official, data[0].flags.svg, data[0].capital, data[0].population, Object.values(data[0].languages).join(", "));
+            refs.countryInfo.innerHTML = markUpAddData;
+        }
+        if (data.length > 1 && data.length <= 10) {
+            if (refs.countryInfo !== '') {
+                refs.countryInfo.innerHTML = '';
             }
-            if (data.length > 10) {
-                Notiflix.Notify.info("Too many matches found. Please enter a more specific name.");
+            for (const element of data) {
+                const markUp = createMarkUp(element.name.official, element.flags.svg);
+                refs.countryList.innerHTML += markUp;
             }
-        }).catch(error => { Notiflix.Notify.failure("Oops, there is no country with that name") });
-    }
+        }
+        if (data.length > 10) {
+            Notiflix.Notify.info("Too many matches found. Please enter a more specific name.");
+        }
+    }).catch(error => { Notiflix.Notify.failure("Oops, there is no country with that name") });
 }
 
 function createMarkUp(official, flags) {
