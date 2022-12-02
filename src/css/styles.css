@@ -40,13 +40,13 @@ body p {
 }
 
 .flags_big {
-  width: 15%;
+  width: 8%;
   margin-right: 5px;
 }
 
 .countries {
   margin: 10px;
-  font-size: small;
+  font-size: medium;
   font-weight: 400;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
