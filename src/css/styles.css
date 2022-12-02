@@ -35,7 +35,7 @@ body p {
 }
 
 .flags {
-  width: 6%;
+  width: 35px;
   margin-right: 5px;
 }
 
@@ -45,13 +45,18 @@ body p {
 }
 
 .countries {
+  display: flex;
+  align-items: center;
+  width: 100vw;
   margin: 10px;
   font-size: medium;
-  font-weight: 400;
+  font-weight: 500;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .country {
+  display: flex;
+  align-items: center;
   margin: 10px;
   font-size: x-large;
   font-weight: 800;
