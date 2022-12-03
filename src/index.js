@@ -38,7 +38,10 @@ function onSearch(evt) {
         if (data.length > 10) {
             Notiflix.Notify.info("Too many matches found. Please enter a more specific name.");
         }
-    }).catch(error => { Notiflix.Notify.failure("Oops, there is no country with that name") });
+        }).catch(error => {
+            console.clear();
+            Notiflix.Notify.failure("Oops, there is no country with that name");
+        });
     } 
 }
 
@@ -51,8 +54,8 @@ function createMarkUp(official, flags) {
 function createCountryMarkUp(official, flags, capital, population, languages) {
     return `
         <p class="country"><img class="flags_big" src="${flags}" alt="${official}">${official}</p>
-        <p class="capital">Capital: ${capital}</p>
-        <p class = "population">Population: ${population}</p>
-        <p class = "lang">Languages: ${languages} </p>
+        <p class="capital"><b>Capital:</b> ${capital}</p>
+        <p class = "population"><b>Population:</b> ${population}</p>
+        <p class = "lang"><b>Languages:</b> ${languages} </p>
         `
 }
